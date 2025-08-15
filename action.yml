@@ -1,0 +1,72 @@
+name: 'Portainer Stack Deploy'
+description: 'Deploy Docker stacks to Portainer with Vault integration and proxy support'
+author: 'autofleetcontrol'
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
+
+inputs:
+  # Portainer connection
+  portainer-url:
+    description: 'Portainer URL (e.g., https://portainer.example.com)'
+    required: true
+  portainer-username:
+    description: 'Portainer username'
+    required: true
+  portainer-password:
+    description: 'Portainer password'
+    required: true
+  portainer-endpoint:
+    description: 'Portainer endpoint ID'
+    required: true
+  
+  # Stack configuration
+  stack-name:
+    description: 'Stack name'
+    required: true
+  stack-file:
+    description: 'Path to docker-compose file'
+    required: false
+    default: 'docker-compose.yml'
+  stack-vars:
+    description: 'Stack variables in YAML or ENV format (KEY: VALUE or KEY=VALUE)'
+    required: false
+    default: ''
+  
+  # Deployment options
+  prune:
+    description: 'Remove services that are no longer referenced'
+    required: false
+    default: 'true'
+  pull-image:
+    description: 'Pull latest images before deploy'
+    required: false
+    default: 'true'
+  
+  # Team access
+  team-names:
+    description: 'Comma-separated team names for access control'
+    required: false
+    default: ''
+  
+  # Network options
+  disable-proxy:
+    description: 'Disable proxy for internal networks'
+    required: false
+    default: 'true'
+  
+  # Vault integration (optional)
+  vault-secrets:
+    description: 'JSON object with Vault secrets to merge with stack-vars'
+    required: false
+    default: '{}'
+
+outputs:
+  stack-id:
+    description: 'Created or updated stack ID'
+  stack-status:
+    description: 'Deployment status (created/updated)'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
