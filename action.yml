@@ -1,6 +1,6 @@
-name: 'Portainer Stack Deploy'
-description: 'Deploy Docker stacks to Portainer with Vault integration and proxy support'
-author: 'autofleetcontrol'
+name: 'Portainer Stack Deploy Fixed'
+description: 'Deploy Docker stacks to Portainer with Vault integration, proxy support and fixed API endpoints'
+author: 'fe5dds9'
 branding:
   icon: 'upload-cloud'
   color: 'blue'
